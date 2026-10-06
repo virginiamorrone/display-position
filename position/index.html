@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+  <h1>position</h1>
+  <p>
+    <code>display</code> decide cómo se comporta un elemento.
+    <code>position</code> decide <strong>dónde se ubica</strong> y respecto a qué.
+    En cada ejemplo, la caja <strong>roja</strong> es la que movemos.
+  </p>
+
+  <!-- ================= 1. STATIC ================= -->
+  <section class="seccion">
+    <h2>1. <code>position: static</code></h2>
+    <div class="linea">
+      <div class="caja en-fila">div 1</div>
+      <div class="caja en-fila movida static">div 2</div>
+      <div class="caja en-fila">div 3</div>
+    </div>
+    <ul class="notas">
+      <li>Es el valor por defecto de todos los elementos.</li>
+      <li>La caja roja tiene <code>top: 40px</code> y <code>left: 40px</code>, pero <strong>no se mueve</strong>: con static esas propiedades no tienen efecto.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 2. RELATIVE ================= -->
+  <section class="seccion">
+    <h2>2. <code>position: relative</code></h2>
+    <div class="linea espacio-abajo">
+      <div class="caja en-fila">div 1</div>
+      <div class="caja en-fila movida relative">div 2</div>
+      <div class="caja en-fila">div 3</div>
+    </div>
+    <ul class="notas">
+      <li>La caja roja se desplaza <strong>respecto a su propio lugar</strong>: 30px hacia abajo y 40px hacia la derecha.</li>
+      <li>Su lugar original <strong>se conserva</strong>: el div 3 no se mueve y queda un hueco.</li>
+      <li>Puede quedar encima de otros elementos, porque los demás no se enteran del desplazamiento.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 3. ABSOLUTE ================= -->
+  <section class="seccion">
+    <h2>3. <code>position: absolute</code></h2>
+
+    <p class="subtitulo">Con el padre <code>position: relative</code></p>
+    <div class="linea referencia">
+      <div class="caja en-fila">div 1</div>
+      <div class="caja en-fila movida absolute">div 2</div>
+      <div class="caja en-fila">div 3</div>
+    </div>
+
+    <p class="subtitulo">Con el abuelo <code>position: relative</code> y el padre static</p>
+    <div class="linea referencia">
+      Abuelo (position: relative)
+      <div class="padre-static">
+        Padre (sin position, es static)
+        <div class="caja movida absolute">hijo</div>
+      </div>
+    </div>
+
+    <p class="subtitulo">Sin ningún ancestro posicionado (busca la caja naranja arriba a la derecha de la página)</p>
+    <div class="linea">
+      <div class="caja en-fila">div 1</div>
+      <div class="caja en-fila sin-referencia">sin referencia</div>
+      <div class="caja en-fila">div 3</div>
+    </div>
+
+    <ul class="notas">
+      <li>La caja <strong>sale del flujo</strong>: deja de ocupar espacio y el div 3 se corre a su lugar.</li>
+      <li>Se ubica dentro del <strong>contenedor más cercano con un position distinto de static</strong>.</li>
+      <li>En el primer caso, ese contenedor es el padre: la caja queda en su esquina superior derecha.</li>
+      <li>En el segundo, el padre es static y se lo salta: el hijo queda en la esquina del <strong>abuelo</strong>.</li>
+      <li>En el tercero, no hay ninguno: la caja se ubica respecto a la página y "se escapa".</li>
+    </ul>
+  </section>
+
+  <!-- ================= 4. RELATIVE + ABSOLUTE ================= -->
+  <section class="seccion">
+    <h2>4. La pareja <code>relative</code> + <code>absolute</code></h2>
+    <div class="lado-a-lado">
+      <div class="tarjeta">
+        <div class="insignia">Nuevo</div>
+        <strong>Curso de CSS</strong>
+        <div>La insignia está en la esquina de la tarjeta, aunque la tarjeta cambie de lugar.</div>
+      </div>
+
+      <div class="modal">
+        <div class="cerrar">×</div>
+        <strong>Ventana modal</strong>
+        <div>El botón de cerrar queda siempre arriba a la derecha.</div>
+      </div>
+    </div>
+    <ul class="notas">
+      <li>El <strong>contenedor</strong> lleva <code>position: relative</code>: no se mueve, solo se convierte en la referencia.</li>
+      <li>El <strong>hijo</strong> lleva <code>position: absolute</code>: se ubica dentro del contenedor.</li>
+      <li>Valores negativos (<code>top: -12px</code>) permiten que el hijo sobresalga del borde.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 5. Z-INDEX ================= -->
+  <section class="seccion">
+    <h2>5. <code>z-index</code>: quién queda arriba</h2>
+    <div class="linea zona-z">
+      <div class="capa capa-1">z-index: 1</div>
+      <div class="capa capa-2">z-index: 3</div>
+      <div class="capa capa-3">z-index: 2</div>
+    </div>
+    <ul class="notas">
+      <li>Cuando los elementos posicionados se superponen, <code>z-index</code> decide cuál queda encima.</li>
+      <li>El número más alto gana: la roja (3) está encima de la verde (2), y la verde encima de la azul (1).</li>
+      <li>Solo funciona en elementos con un <code>position</code> distinto de static.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 6. POSITION + DISPLAY ================= -->
+  <section class="seccion">
+    <h2>6. Un elemento inline con <code>position: absolute</code></h2>
+    <div class="linea referencia alto">
+      Este contenedor tiene texto normal.
+      <span class="span-absolute">span con width</span>
+    </div>
+    <ul class="notas">
+      <li>Un <code>span</code> es inline, así que normalmente ignora <code>width</code> y <code>height</code>.</li>
+      <li>Con <code>absolute</code> sale del flujo, deja de formar parte de la línea de texto y pasa a comportarse como block: ahora <strong>sí respeta</strong> el ancho y el alto.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 7. FIXED ================= -->
+  <section class="seccion">
+    <h2>7. <code>position: fixed</code></h2>
+    <p>
+      Mira el botón verde de la esquina inferior derecha de la ventana.
+      Haz scroll por toda la página: siempre queda en el mismo lugar.
+    </p>
+    <ul class="notas">
+      <li>Sale del flujo, igual que absolute.</li>
+      <li>Su referencia es siempre la <strong>ventana del navegador</strong>, sin importar dónde esté en el HTML.</li>
+      <li>No se mueve con el scroll. Usos: botón de ayuda, botón "volver arriba", barra fija.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 8. STICKY ================= -->
+  <section class="seccion">
+    <h2>8. <code>position: sticky</code></h2>
+    <p class="subtitulo">Haz scroll dentro de la caja</p>
+    <div class="linea scroll">
+      <div class="titulo-sticky">Sección A <span class="contador">3</span></div>
+      <p class="parrafo-relleno">Contenido de la sección A. El título azul se queda pegado arriba.</p>
+      <p class="parrafo-relleno">El contador rojo es un hijo absolute: acompaña al título.</p>
+      <p class="parrafo-relleno">Más contenido de la sección A.</p>
+      <div class="titulo-sticky">Sección B <span class="contador">5</span></div>
+      <p class="parrafo-relleno">Al llegar, el título B empuja al A y ocupa su lugar.</p>
+      <p class="parrafo-relleno">Más contenido de la sección B.</p>
+      <p class="parrafo-relleno">Más contenido de la sección B.</p>
+      <div class="titulo-sticky">Sección C <span class="contador">1</span></div>
+      <p class="parrafo-relleno">Contenido de la sección C.</p>
+      <p class="parrafo-relleno">Más contenido de la sección C.</p>
+      <p class="parrafo-relleno">Fin del contenido.</p>
+    </div>
+    <ul class="notas">
+      <li>Se comporta normal hasta llegar al borde indicado (<code>top: 0</code>), y ahí se queda pegado.</li>
+      <li>Necesita <strong>siempre</strong> un valor de <code>top</code>, <code>bottom</code>, <code>left</code> o <code>right</code>.</li>
+      <li>Nunca sale de su padre: cuando termina su contenedor, se va con él.</li>
+      <li>Un elemento sticky también es referencia: el contador absolute se queda en su esquina y lo acompaña.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 9. DISPLAY + POSITION ================= -->
+  <section class="seccion">
+    <h2>9. <code>display</code> y <code>position</code> juntos: menú desplegable</h2>
+    <p class="subtitulo">Pasa el mouse sobre el botón</p>
+    <div class="linea zona-menu">
+      <div class="menu">
+        <div class="boton-menu">Cursos ▾</div>
+        <div class="submenu">
+          <div class="opcion">HTML</div>
+          <div class="opcion">CSS</div>
+          <div class="opcion">JavaScript</div>
+        </div>
+      </div>
+      Este texto no se mueve cuando aparece el menú.
+    </div>
+    <ul class="notas">
+      <li><code>position</code> decide <strong>dónde</strong> aparece el submenú: debajo del botón, sin empujar el contenido.</li>
+      <li><code>display</code> decide <strong>si se ve</strong>: <code>none</code> por defecto y <code>block</code> al pasar el mouse.</li>
+      <li>Es el mismo patrón que usan los tooltips y las ventanas modales.</li>
+    </ul>
+  </section>
+
+  <!-- ================= RESUMEN DE POSITION ================= -->
+  <section class="seccion">
+    <h2>Resumen de position</h2>
+    <table class="tabla">
+      <tr>
+        <th>Valor</th><th>Se ubica respecto a</th><th>¿Ocupa su espacio?</th><th>¿Se mueve con el scroll?</th>
+      </tr>
+      <tr><td>static</td><td>Nada: sigue el flujo</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>relative</td><td>Su propio lugar original</td><td>Sí</td><td>Sí</td></tr>
+      <tr><td>absolute</td><td>El contenedor más cercano con position</td><td>No</td><td>Sí</td></tr>
+      <tr><td>fixed</td><td>La ventana</td><td>No</td><td>No</td></tr>
+      <tr><td>sticky</td><td>El borde de la ventana al hacer scroll</td><td>Sí</td><td>Hasta que se pega</td></tr>
+    </table>
+  </section>
+
+  <!-- Espacio final para que el botón fixed no tape el contenido -->
+  <div class="espacio-final"></div>
+
+  <!-- Elemento fixed: queda fijo en la ventana -->
+  <div class="fixed">Soy fixed</div>
+
+</body>
+</html>

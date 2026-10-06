@@ -1,0 +1,345 @@
+/* ===============================================
+   Código generado con inteligencia artificial.
+   Autoría: Claude, asistente de IA de Anthropic.
+   Revisado y adaptado para la clase sobre la propiedad display y position por Virginia Morrone.
+   =============================================== */
+  /* ===============================================
+     ESTILOS GENERALES DE LA PÁGINA
+     =============================================== */
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    line-height: 1.6;
+    background: #fafafa;
+    color: #222;
+  }
+
+  .seccion {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+
+  .seccion h2 { margin-top: 0; }
+
+  code {
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  /* Contenedor de texto. Es un div (y no un <p>)
+     para que pueda contener divs dentro sin romper el HTML. */
+  .linea {
+    background: #f6f6f6;
+    border: 1px dashed #ccc;
+    padding: 8px;
+  }
+
+  .notas { padding-left: 20px; }
+  .notas li { margin-bottom: 4px; }
+
+  /* ===============================================
+     LA CAJA: los divs azules de los ejemplos.
+     =============================================== */
+  .caja {
+    width: 150px;          /* ¿se respeta el ancho? */
+    height: 50px;          /* ¿se respeta el alto? */
+    margin: 20px;          /* ¿funcionan los márgenes verticales? */
+    padding: 10px;
+    border: 2px solid #1e3a8a;
+    background: #2563eb;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* ===============================================
+     TABLA DE RESUMEN
+     =============================================== */
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tabla th,
+  .tabla td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .tabla th { background: #f0f0f0; }
+
+
+
+  /* ===============================================
+     EJEMPLOS DE POSITION
+     =============================================== */
+
+  .subtitulo {
+    margin: 20px 0 6px;
+    font-weight: bold;
+    color: #444;
+  }
+
+  /* Cajas una al lado de la otra, manteniendo el azul de .caja */
+  .en-fila {
+    display: inline-block;
+  }
+
+  /* La caja que movemos en cada ejemplo */
+  .movida {
+    background: #dc2626;
+    border-color: #7f1d1d;
+  }
+
+  /* ===============================================
+     1. STATIC
+     =============================================== */
+  .static {
+    position: static;   /* el valor por defecto */
+    top: 40px;          /* no tiene ningún efecto */
+    left: 40px;         /* no tiene ningún efecto */
+  }
+
+  /* ===============================================
+     2. RELATIVE
+     =============================================== */
+  .relative {
+    position: relative;
+    top: 30px;          /* 30px más abajo de su lugar original */
+    left: 40px;         /* 40px más a la derecha de su lugar original */
+  }
+
+  .espacio-abajo {
+    padding-bottom: 40px; /* lugar para ver la caja desplazada */
+  }
+
+  /* ===============================================
+     3. ABSOLUTE
+     =============================================== */
+
+  /* El contenedor que sirve de referencia */
+  .referencia {
+    position: relative;
+  }
+
+  .absolute {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;          /* sin margen, para que la distancia sea exacta */
+  }
+
+  /* Absolute SIN ningún ancestro posicionado: se va a la página */
+  .sin-referencia {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    margin: 0;
+    background: #d97706;
+    border-color: #78350f;
+  }
+
+  /* Padre static del ejemplo del abuelo: absolute lo salta */
+  .padre-static {
+    height: 110px;
+    margin-top: 8px;
+    padding: 8px;
+    background: #fff;
+    border: 1px dashed #ccc;
+  }
+
+  /* ===============================================
+     4. RELATIVE + ABSOLUTE: casos reales
+     =============================================== */
+  .lado-a-lado {
+    padding: 16px 0;
+  }
+
+  .tarjeta,
+  .modal {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 32px 16px 0;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .tarjeta {
+    position: relative;  /* referencia para la insignia */
+    width: 240px;
+  }
+
+  .insignia {
+    position: absolute;
+    top: -12px;          /* sobresale por arriba */
+    right: -12px;        /* sobresale por la derecha */
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.85em;
+    font-weight: bold;
+  }
+
+  .modal {
+    position: relative;  /* referencia para el botón de cerrar */
+    width: 280px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  .cerrar {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #eee;
+    text-align: center;
+    line-height: 28px;
+    font-weight: bold;
+  }
+
+  /* ===============================================
+     5. Z-INDEX: quién queda arriba
+     =============================================== */
+  .zona-z {
+    position: relative;  /* referencia para las capas */
+    height: 150px;
+  }
+
+  .capa {
+    position: absolute;
+    width: 140px;
+    height: 80px;
+    padding: 8px;
+    border: 2px solid #222;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .capa-1 { top: 10px; left: 10px;  background: #2563eb; z-index: 1; }
+  .capa-2 { top: 40px; left: 80px;  background: #dc2626; z-index: 3; }
+  .capa-3 { top: 70px; left: 150px; background: #16a34a; z-index: 2; }
+
+  /* ===============================================
+     6. UN ELEMENTO INLINE CON ABSOLUTE
+     =============================================== */
+  .alto {
+    height: 100px;
+  }
+
+  .span-absolute {
+    position: absolute;  /* el span pasa a comportarse como block */
+    top: 10px;
+    right: 10px;
+    width: 200px;        /* ahora SÍ respeta el ancho */
+    height: 40px;        /* y el alto */
+    padding: 8px;
+    background: #16a34a;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* ===============================================
+     7. FIXED
+     =============================================== */
+  .fixed {
+    position: fixed;
+    bottom: 16px;
+    right: 16px;         /* queda fijo en la ventana */
+    padding: 12px 18px;
+    border-radius: 999px;
+    background: #16a34a;
+    color: #fff;
+    font-weight: bold;
+    z-index: 10;
+  }
+
+  .espacio-final {
+    height: 80px;
+  }
+
+  /* ===============================================
+     8. STICKY
+     =============================================== */
+  .scroll {
+    height: 220px;
+    overflow-y: auto;    /* caja con scroll propio */
+    padding: 0;
+  }
+
+  .titulo-sticky {
+    position: sticky;
+    top: 0;              /* se pega arriba al llegar al borde */
+    padding: 8px 12px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* Hijo absolute de un sticky: lo acompaña siempre */
+  .contador {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: #dc2626;
+    color: #fff;
+    font-size: 0.85em;
+  }
+
+  .parrafo-relleno {
+    margin: 0;
+    padding: 10px 12px;
+  }
+
+  /* ===============================================
+     9. DISPLAY + POSITION: menú desplegable
+     =============================================== */
+  .zona-menu {
+    padding-bottom: 150px; /* lugar para que se vea el submenú */
+  }
+
+  .menu {
+    display: inline-block; /* el botón queda en la línea, con su tamaño */
+    position: relative;    /* referencia para el submenú */
+  }
+
+  .boton-menu {
+    padding: 8px 16px;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .submenu {
+    position: absolute;    /* aparece debajo del botón sin empujar nada */
+    top: 100%;             /* justo debajo del botón */
+    left: 0;
+    display: none;         /* oculto por defecto */
+    min-width: 180px;
+    padding: 6px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #fff;
+    z-index: 5;
+  }
+
+  .menu:hover .submenu {
+    display: block;        /* se muestra al pasar el mouse */
+  }
+
+  .opcion {
+    padding: 6px 14px;
+  }

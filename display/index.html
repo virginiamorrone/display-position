@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>block vs inline vs inline-block</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+
+  <h1>block · inline · inline-block</h1>
+  <p>
+    Todas las cajas son <code>&lt;div&gt;</code> con la clase <code>.caja</code>:
+    <code>width: 150px</code>, <code>height: 50px</code>,
+    <code>margin: 20px</code> y <code>padding: 10px</code>.
+    Lo único que cambia en cada sección es la clase de display.
+  </p>
+
+  <!-- ================= 0. SIN CLASE DE DISPLAY ================= -->
+  <section class="seccion">
+    <h2>0. Sin clase de display (valor por defecto)</h2>
+    <div class="linea">
+      Texto antes
+      <div class="caja">div 1</div>
+      <div class="caja">div 2</div>
+      <div class="caja">div 3</div>
+      texto después.
+    </div>
+    <ul class="notas">
+      <li>Sin ninguna clase de display, un <code>div</code> es <code>block</code> por defecto.</li>
+      <li>Por eso se ve igual que la sección 1.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 1. BLOCK ================= -->
+  <section class="seccion">
+    <h2>1. <code>display: block</code></h2>
+    <div class="linea">
+      Texto antes
+      <div class="caja block">div 1</div>
+      <div class="caja block">div 2</div>
+      <div class="caja block">div 3</div>
+      texto después.
+    </div>
+    <ul class="notas">
+      <li>Cada caja empieza en una <strong>línea nueva</strong> y corta el texto.</li>
+      <li>Sí respeta <code>width</code> y <code>height</code>.</li>
+      <li>Los márgenes verticales separan las cajas entre sí.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 2. INLINE ================= -->
+  <section class="seccion">
+    <h2>2. <code>display: inline</code></h2>
+    <div class="linea">
+      Texto antes
+      <div class="caja inline">div 1</div>
+      <div class="caja inline">div 2</div>
+      <div class="caja inline">div 3</div>
+      texto después. Este texto sigue un poco más para que veas cómo
+      el padding de las cajas se superpone con las líneas vecinas sin empujarlas.
+    </div>
+    <ul class="notas">
+      <li>Las cajas fluyen <strong>dentro de la línea</strong>, como si fueran palabras.</li>
+      <li><strong>Ignora</strong> <code>width</code> y <code>height</code>: el tamaño lo define el contenido.</li>
+      <li>El margen horizontal separa; el <strong>vertical no hace nada</strong>.</li>
+      <li>El padding vertical se pinta, pero se <strong>superpone</strong> a las líneas vecinas.</li>
+    </ul>
+  </section>
+
+  <!-- ================= 3. INLINE-BLOCK ================= -->
+  <section class="seccion">
+    <h2>3. <code>display: inline-block</code></h2>
+    <div class="linea">
+      Texto antes
+      <div class="caja inline-block">div 1</div>
+      <div class="caja inline-block">div 2</div>
+      <div class="caja inline-block">div 3</div>
+      texto después.
+    </div>
+    <ul class="notas">
+      <li>Se coloca <strong>en la línea</strong> como inline (no fuerza saltos).</li>
+      <li>Pero <strong>respeta</strong> <code>width</code>, <code>height</code> y márgenes verticales, como block.</li>
+      <li>La línea se agranda para hacerle lugar, sin superposiciones.</li>
+      <li>Si no entran en el ancho, pasan a la línea siguiente, igual que las palabras.</li>
+    </ul>
+  </section>
+
+  <!-- ================= RESUMEN ================= -->
+  <section class="seccion">
+    <h2>Resumen</h2>
+    <table class="tabla">
+      <tr>
+        <th></th><th>block</th><th>inline</th><th>inline-block</th>
+      </tr>
+      <tr><td>¿Salto de línea?</td><td>Sí</td><td>No</td><td>No</td></tr>
+      <tr><td>¿Respeta width/height?</td><td>Sí</td><td>No</td><td>Sí</td></tr>
+      <tr><td>¿Margen vertical funciona?</td><td>Sí</td><td>No</td><td>Sí</td></tr>
+    </table>
+  </section>
+
+</body>
+</html>

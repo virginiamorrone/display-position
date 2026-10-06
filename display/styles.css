@@ -1,0 +1,98 @@
+/* ===============================================
+   Código generado con inteligencia artificial.
+   Autoría: Claude, asistente de IA de Anthropic.
+   Revisado y adaptado para la clase sobre la propiedad display y position por Virginia Morrone.
+   =============================================== */
+ 
+  /* ===============================================
+     ESTILOS GENERALES DE LA PÁGINA
+     =============================================== */
+  body {
+    font-family: system-ui, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    line-height: 1.6;
+    background: #fafafa;
+    color: #222;
+  }
+
+  .seccion {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+
+  .seccion h2 { margin-top: 0; }
+
+  code {
+    background: #eee;
+    padding: 2px 5px;
+    border-radius: 4px;
+  }
+
+  /* Contenedor de texto. Es un div (y no un <p>)
+     para que pueda contener divs dentro sin romper el HTML. */
+  .linea {
+    background: #f6f6f6;
+    border: 1px dashed #ccc;
+    padding: 8px;
+  }
+
+  .notas { padding-left: 20px; }
+  .notas li { margin-bottom: 4px; }
+
+  /* ===============================================
+     LA CAJA: mismos estilos para todos los ejemplos.
+     Lo ÚNICO que cambia entre secciones es "display".
+     =============================================== */
+  .caja {
+    width: 150px;          /* ¿se respeta el ancho? */
+    height: 50px;          /* ¿se respeta el alto? */
+    margin: 20px;          /* ¿funcionan los márgenes verticales? */
+    padding: 10px;
+    border: 2px solid #1e3a8a;
+    background: #2563eb;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  /* ===============================================
+     CLASES DE DISPLAY
+     =============================================== */
+  .block {
+    display: block;
+    background: #2563eb;
+    border-color: #1e3a8a;
+  }
+
+  .inline {
+    display: inline;
+    background: #dc2626;
+    border-color: #7f1d1d;
+  }
+
+  .inline-block {
+    display: inline-block;
+    background: #16a34a;
+    border-color: #14532d;
+  }
+
+  /* ===============================================
+     TABLA DE RESUMEN
+     =============================================== */
+  .tabla {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .tabla th,
+  .tabla td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+  }
+
+  .tabla th { background: #f0f0f0; }
